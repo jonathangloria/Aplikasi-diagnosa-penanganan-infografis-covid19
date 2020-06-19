@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html>
+    <head>
+        <style>           
+        header, body{
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        
+        .blue{
+            background-color: #008CBA;
+        }
+        
+        .red{
+            background-color: #f44336;
+        }
+
+        input[type=text], input[type=date], select, textarea{
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+          }
+          
+          input[type=date]{
+            width: 30%;
+          }
+
+          /* Style the label to display next to the inputs */
+          label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+          }
+
+          /* Style the submit button */
+          input[type=submit] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+          }
+
+          /* Style the container */
+          .container {
+            width: 70%;
+            margin-left: 13%;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+          }
+
+          /* Floating column for labels: 25% width */
+          .col-22 {
+            float: left;
+            width: 22%;
+            margin: 10px;
+          }
+          
+          .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+          }
+          
+          .col-30 {
+            float: left;
+            width: 30%;
+            margin: 10px;
+          }
+          
+          .col-40 {
+            float: left;
+            width: 40%;
+            margin: 10px;
+          }
+
+          .col-50 {
+            float: left;
+            width: 50%;
+            text-align: center;
+            margin-top: 10px;
+          }
+          
+          .title {
+            font-size: 24px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center;
+          }
+
+          /* Floating column for inputs: 75% width */
+          .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+          }
+
+          /* Clear floats after the columns */
+          .row:after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+
+          /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+          @media screen and (max-width: 600px) {
+            .col-25, .col-75, input[type=submit] {
+              width: 100%;
+              margin-top: 0;
+            }
+          }
+          .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 100%;
+            float: left;
+            }
+
+          .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+        
+            ::-webkit-scrollbar {
+		  width: 5px;
+		}
+
+		::-webkit-scrollbar-track {
+		  background: #eee;
+		}
+
+		::-webkit-scrollbar-thumb {
+		  background: #ccc;
+		}
+
+		::-webkit-scrollbar-thumb:hover {
+		  background: #bbb;
+		}
+		#map{
+			width: 100%;
+			height: 100vh
+		}
+		.leaflet-container{
+			background: transparent;
+		}
+		.list-covid{
+			height: 100vh;
+			overflow-x: hidden;
+		}
+		.list-group-item:hover{
+			cursor: pointer;
+		}
+
+	.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+	.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+        </style>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+        <title>Diagnosis Corona</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background: darkblue">
+        <div class="container">            
+            <h2 class="title">Infografis Covid-19 Indonesia</h2>
+            <p style="text-align:center">Dilansir dari <a href="https://bnpb-inacovid19.hub.arcgis.com/">(https://bnpb-inacovid19.hub.arcgis.com/)</a> per 19 Juni 2020</p>
+            <div class="row">
+                <div class="col-30">
+                    <div class="w3-card-4">
+                        <header class="w3-container">
+                          <h3>Kasus Terkonfirmasi</h3>
+                        </header>
+                        <div class="w3-container w3-blue">
+                          <h1>42.762</h1>
+                        </div>
+                        <footer class="w3-container">
+                          <p>Jumlah kasus positif COVID-19 akumulatif</p>
+                        </footer>
+                    </div>
+                </div>
+                <div class="col-30">
+                    <div class="w3-card-4">
+                        <header class="w3-container">
+                          <h3>Sembuh</h3>
+                        </header>
+                        <div class="w3-container w3-blue">
+                          <h1>16.798</h1>
+                        </div>
+                        <footer class="w3-container">
+                          <p>Jumlah sembuh akumulatif pasien COVID-19</p>
+                        </footer>
+                    </div>
+                </div>
+                <div class="col-30">
+                    <div class="w3-card-4">
+                        <header class="w3-container">
+                          <h3>Meninggal</h3>
+                        </header>
+                        <div class="w3-container w3-blue">
+                          <h1>2.339</h1>
+                        </div>
+                        <footer class="w3-container">
+                          <p>Jumlah meninggal akumulatif pasien COVID-19</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-22">
+                    <div class="w3-card-4">
+                        <header class="w3-container">
+                          <h3>ODP</h3>
+                        </header>
+                        <div class="w3-container w3-blue">
+                          <h1>36.698</h1>
+                        </div>
+                        <footer class="w3-container">
+                          <p>Jumlah nasional Orang Dalam Pemantauan</p>
+                        </footer>
+                    </div>
+                </div>
+                <div class="col-22">
+                    <div class="w3-card-4">
+                        <header class="w3-container">
+                          <h3>PDP</h3>
+                        </header>
+                        <div class="w3-container w3-blue">
+                          <h1>17.923</h1>
+                        </div>
+                        <footer class="w3-container">
+                          <p>Jumlah nasional Pasien Dalam Pengawasan</p>
+                        </footer>
+                    </div>
+                </div>
+                <div class="col-22">
+                    <div class="w3-card-4">
+                        <header class="w3-container">
+                          <h3>Pengujian</h3>
+                        </header>
+                        <div class="w3-container w3-blue">
+                          <h1>358.659</h1>
+                        </div>
+                        <footer class="w3-container">
+                          <p>Jumlah nasional pengujian spesimen kasus (orang)</p>
+                        </footer>
+                    </div>
+                </div>
+                <div class="col-22">
+                    <div class="w3-card-4">
+                        <header class="w3-container">
+                          <h3>Kasus Negatif</h3>
+                        </header>
+                        <div class="w3-container w3-blue">
+                          <h1>315.897</h1>
+                        </div>
+                        <footer class="w3-container">
+                          <p>Jumlah nasional kasus negatif COVID-19</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            <div id="piechart1"></div>
+            <br><br>
+            <div id="piechart2"></div>
+            <br><br>
+            <div class="row" style="width: 100%">
+		<div class="col-md-3">
+                    <ul class="list-group list-covid">
+                    </ul>
+		</div>
+		<div class="col-md-9">
+                    <div id="map"></div>
+		</div>
+            </div>
+            <div class="row">
+                <div class="col-25"></div>
+                <div class="col-50">
+                  <a href="index.html"><button type="button" class="red">HOME</button></a>
+                </div>  
+            </div>
+          </div>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            // Draw the chart and set the chart values
+            function drawChart() {
+              var data = google.visualization.arrayToDataTable([
+              ['Kasus', 'Jumlah'],
+              ['Positif', 42762],
+              ['Negatif', 315897]
+            ]);
+
+              // Optional; add a title and set the width and height of the chart
+              var options = {'title':'Jumlah Pengujian Spesimen', 'width':550, 'height':400};
+
+              // Display the chart inside the <div> element with id="piechart"
+              var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+              chart.draw(data, options);
+            }
+        </script>
+        <script type="text/javascript">
+            
+            google.charts.load('current', {'packages':['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+
+            // Draw the chart and set the chart values
+            function drawChart() {
+              var data = google.visualization.arrayToDataTable([
+              ['Kasus positif', 'Jumlah'],
+              ['Sembuh', 16798],
+              ['Meninggal', 2339],
+              ['Dalam Pengobatan', 23625]
+            ]);
+
+              // Optional; add a title and set the width and height of the chart
+              var options = {'title':'Kasus Positif', 'width':550, 'height':400};
+
+              // Display the chart inside the <div> element with id="piechart"
+              var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+              chart.draw(data, options);
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+        <script type="text/javascript">
+          var map= L.map("map").setView([-3.824181, 117.8191513],5);
+          var api='https://services5.arcgis.com/VS6HdKS0VfIhv8Ct/arcgis/rest/services/COVID19_Indonesia_per_Provinsi/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json';
+          var dataCovid=[];
+          var geojson=[];
+          map.attributionControl.addAttribution('</a>');
+          getData();
+          $(document).on("click",".list-covid .list-group-item",function(){
+                var id=$(this).data("id");
+                var set=geojson[id];
+                set.eachLayer(function(feature){
+                        feature.openPopup();
+                        map.fitBounds(feature.getBounds());
+                });
+          });
+        function getColor(positif){
+                color="#0d0";
+                if(positif>1000){
+                        color="#cc0000";
+                }
+                else if(positif>500){
+                        color="#e60000";
+                }
+                else if(positif>200){
+                        color="#ff4d4d";
+                }
+                else if(positif>100){
+                        color="#f90";
+                }
+                else if(positif>50){
+                        color="#09d";
+                }
+                else if(positif>20){
+                        color="#090";
+                }
+                return color;
+        }
+        // atur style
+        function style(f) {
+                var KODE=f.properties.KODE;
+                data = dataCovid[KODE];
+                // console.log(data);
+                return {
+                        weight: 1,
+                        opacity: 1,
+                        color: 'white',
+                        dashArray: '3',
+                        fillOpacity: 0.7,
+                        fillColor: getColor(data.Kasus_Posi)
+                };
+        }
+        // update jika hover
+        function highlightFeature(e) {
+                var layer = e.target;
+
+                layer.setStyle({
+                        weight: 1,
+                        color: '#f00',
+                        dashArray: '',
+                        fillOpacity: 0.7
+                });
+
+                if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                        layer.bringToFront();
+                }
+
+        }
+        // update info
+                function resetHighlight(e) {
+                        var layer = e.target;
+                        layer.setStyle({
+                                weight: 1,
+                                opacity: 1,
+                                color: 'white',
+                                dashArray: '3',
+                                fillOpacity: 0.7,
+                        })
+                }
+
+          function onEachFeature(f, layer) {
+                        layer.on({
+                                mouseover: highlightFeature,
+                                mouseout: resetHighlight
+                        });
+                        var KODE=f.properties.KODE;
+                        // console.log(f.properties);
+                        data = dataCovid[KODE];
+                        var popUp='<table>'+
+                                            '<tr>'+
+                                                    '<td colspan="4"><h6>'+data.Provinsi+'</h6></td>'+
+                                            '</tr>'+
+                                            '<tr>'+
+                                                    '<td class="bg-primary" width="20">&nbsp;</td>'+
+                                                    '<td>Positif</td>'+
+                                                    '<td>'+data.Kasus_Posi+'</td>'+
+                                            '</tr>'+
+                                            '<tr>'+
+                                                    '<td class="bg-success"></td>'+
+                                                    '<td>Sembuh</td>'+
+                                                    '<td>'+data.Kasus_Semb+'</td>'+
+                                            '</tr>'+
+                                            '<tr>'+
+                                                    '<td class="bg-danger"></td>'+
+                                                    '<td>Meninggal</td>'+
+                                                    '<td>'+data.Kasus_Meni+'</td>'+
+                                            '</tr>'+
+                                            '</table>';
+                        layer.bindPopup(popUp);
+
+         }
+
+        var legend = L.control({position: 'bottomright'});
+
+                legend.onAdd = function (map) {
+                        var div = L.DomUtil.create('div', 'info legend'),
+                                grades = [0, 20, 50, 100, 200, 500],
+                                labels = [],
+                                from, to;
+
+                        for (var i = 0; i < grades.length; i++) {
+                                from = grades[i];
+                                to = grades[i + 1];
+
+                                labels.push(
+                                        '<i style="background:' + getColor(from + 1) + '"></i> ' +
+                                        from + (to ? '&ndash;' + to : '+'));
+                        }
+
+                        div.innerHTML = labels.join('<br>');
+                        return div;
+                };
+
+                legend.addTo(map);
+
+          function getData(){
+                $.ajax({
+                        url:api,
+                        dataType:'JSON',
+                        success:function(data){
+                                var features=data.features;
+                                for (i=0;i<features.length;i++) {
+                                        var attributes=features[i].attributes;
+                                        var Kode_Provi=attributes.Kode_Provi;
+                                        dataCovid[Kode_Provi]=attributes;
+                                        // console.log(attributes);
+                                        var list='<h5>'+attributes.Provinsi+'</h5>'+
+                                                                '<span class="text-primary">Positif : '+attributes.Kasus_Posi+'</span>- '+
+                                                                '<span class="text-success">Sembuh : '+attributes.Kasus_Semb+'</span> -'+
+                                                                '<span class="text-danger">Meninggal : '+attributes.Kasus_Meni+'</span>';
+                                        $(".list-covid").append('<li class="list-group-item" data-id="'+Kode_Provi+'">'+list+'</li>');
+                                }
+                                for (i=0;i<features.length;i++) {
+                                        var attributes=features[i].attributes;
+                                        var Kode_Provi=attributes.Kode_Provi;
+                                        if(Kode_Provi!=0){
+                                                $.getJSON("asset/geojson/"+Kode_Provi+".geojson",function(data){
+                                                        var KODE=data.features[0].properties.KODE;
+                                                        geojson[KODE]=L.geoJSON(data,{
+                                                                onEachFeature:onEachFeature,
+                                                                style: style, 
+                                                        }).addTo(map);
+
+                                                });
+                                        }
+                                }
+                        }
+                });
+          }
+
+        </script>
+    </body>
+</html>

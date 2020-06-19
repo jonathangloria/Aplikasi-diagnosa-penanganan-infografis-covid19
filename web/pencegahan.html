@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html>
+    <head>
+        <style>           
+        header, body{
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        
+        .blue{
+            background-color: #008CBA;
+        }
+        
+        .red{
+            background-color: #f44336;
+        }
+
+        input[type=text], input[type=date], select, textarea{
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+          }
+          
+          input[type=date]{
+            width: 30%;
+          }
+
+          /* Style the label to display next to the inputs */
+          label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+          }
+
+          /* Style the submit button */
+          input[type=submit] {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+          }
+
+          /* Style the container */
+          .container {
+            width: 70%;
+            margin-left: 13%;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+          }
+
+          /* Floating column for labels: 25% width */
+          .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+          }
+          
+          .col-30 {
+            float: left;
+            width: 30%;
+            margin: 10px;
+          }
+          
+          .col-40 {
+            float: left;
+            width: 45%;
+            margin: 10px;
+          }
+
+          .col-50 {
+            float: left;
+            width: 50%;
+            text-align: center;
+            margin-top: 10px;
+          }
+          
+          .title {
+            font-size: 24px;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center;
+          }
+
+          /* Floating column for inputs: 75% width */
+          .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+          }
+
+          /* Clear floats after the columns */
+          .row:after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+
+          /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+          @media screen and (max-width: 600px) {
+            .col-25, .col-75, input[type=submit] {
+              width: 100%;
+              margin-top: 0;
+            }
+          }
+          .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 100%;
+            float: left;
+            }
+
+          .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <title>Diagnosis Corona</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background: darkblue">
+        <div class="container">
+            <h2 class="title">Langkah Pencegahan Covid-19</h2>
+            <div class="row">
+                <div class="col-30">
+                <div class="card">
+                     <img src="https://cdn.icon-icons.com/icons2/2299/PNG/512/wash_hands_cleaning_water_coronavirus_covid_soap_icon_141632.png" alt="Avatar" style="width:100%">
+                     <h4><b>Rajin Cuci Tangan</b></h4>
+                     <p>Mencuci tangan dengan sabun dan air selama 20 detik terutama setelah Anda berada di tempat umum, atau setelah meniup hidung, batuk, atau bersin. Jika sabun dan air tidak tersedia, gunakan pembersih tangan yang mengandung setidaknya 60% alkohol.</p>
+                </div>
+                </div>
+                <div class="col-30">
+                <div class="card">
+                     <img src="https://images.assetsdelivery.com/compings_v2/tribalium123/tribalium1231602/tribalium123160200226.jpg" alt="Avatar" style="width:100%">
+                     <h4><b>Mengenakan Masker</b></h4>
+                     <p>Jika Anda TIDAK sakit: Anda bisa menggunakan masker kain yang dapat dicuci dan dipakai berkali-kali. Untuk saat ini, masker medis seperti masker bedah dan N-95 diprioritaskan bagi Dokter dan Paramedis.</p>
+                </div>
+                </div>
+                <div class="col-30">
+                <div class="card">
+                    <img src="https://cdn1.vectorstock.com/i/1000x1000/68/15/flat-no-handshake-icon-vector-28866815.jpg" alt="Avatar" style="width:100%">
+                    <h4><b>Tidak Berjabat Tangan</b></h4> 
+                    <p>Hindari kontak fisik seperti berjabat tangan karena Covid-19 mudah sekali menular melalui kontak fisik.</p>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-30">
+                <div class="card">
+                    <img src="https://cdn1-production-images-kly.akamaized.net/tmFQ4uruGtWITsXd_VXtFCYTolw=/640x640/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3084721/original/063960300_1585046213-social-4954309.jpg" alt="Avatar" style="width:100%">
+                    <h4><b>Jaga Jarak</b></h4>
+                    <p>Menjaga jarak dengan orang lain ketika berkomunikasi atau antre, minimal 1 meter.</p>
+                </div>
+                </div>
+                <div class="col-30">
+                <div class="card">
+                    <img src="https://previews.123rf.com/images/elenabsl/elenabsl2003/elenabsl200300047/142358250-i-stay-at-home-awareness-social-media-campaign-and-coronavirus-prevention-woman-working-with-her-com.jpg" alt="Avatar" style="width:100%">
+                    <h4><b>Tetap Di Rumah</b></h4> 
+                    <p>Melakukan semua kegiatan di dalam rumah untuk memutus rantai penularan Covid-19</p>
+                 </div>
+                </div>
+                <div class="col-30">
+                <div class="card">
+                    <img src="https://www.cdc.gov/coronavirus/2019-ncov/images/COVIDweb_06_coverCough.png" alt="Avatar" style="width:100%">
+                    <h4><b>Tutupi batuk dan bersin</b></h4> 
+                    <p>Tutup mulut dan hidung Anda dengan tisu saat Anda batuk atau bersin atau menggunakan bagian dalam siku Anda.</p>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25"></div>
+                <div class="col-50">
+                  <a href="index.html"><button type="button" class="red">HOME</button></a>
+                </div>  
+            </div>
+          </div>
+    </body>
+</html>
